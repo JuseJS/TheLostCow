@@ -26,8 +26,10 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Image
   serializedClasses:
     Assembly-CSharp:
     - TrafficManager/SpawnLane
@@ -56,7 +58,12 @@ ScriptsOnlyBuild:
     - UnityEngine.TextCore.GlyphMetrics
     - UnityEngine.TextCore.GlyphRect
     UnityEngine.UI:
+    - UnityEngine.UI.AnimationTriggers
+    - UnityEngine.UI.Button/ButtonClickedEvent
+    - UnityEngine.UI.ColorBlock
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+    - UnityEngine.UI.Navigation
+    - UnityEngine.UI.SpriteState
   methodsToPreserve: []
   sceneClasses:
     Assets/Scenes/Prototype 2.unity:
@@ -103,33 +110,37 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 2190}
+      Script: {instanceID: 1600}
     - Class: 114
-      Script: {instanceID: 2604}
+      Script: {instanceID: 2186}
     - Class: 114
-      Script: {instanceID: 2808}
+      Script: {instanceID: 2600}
     - Class: 114
-      Script: {instanceID: 3078}
+      Script: {instanceID: 2804}
     - Class: 114
-      Script: {instanceID: 4078}
+      Script: {instanceID: 3074}
     - Class: 114
-      Script: {instanceID: 4330}
+      Script: {instanceID: 3104}
     - Class: 114
-      Script: {instanceID: 4930}
+      Script: {instanceID: 4074}
     - Class: 114
-      Script: {instanceID: 5026}
+      Script: {instanceID: 4326}
     - Class: 114
-      Script: {instanceID: 5580}
+      Script: {instanceID: 4926}
     - Class: 114
-      Script: {instanceID: 5738}
+      Script: {instanceID: 5022}
     - Class: 114
-      Script: {instanceID: 6056}
+      Script: {instanceID: 5576}
     - Class: 114
-      Script: {instanceID: 6070}
+      Script: {instanceID: 5734}
     - Class: 114
-      Script: {instanceID: 6756}
+      Script: {instanceID: 6052}
     - Class: 114
-      Script: {instanceID: 7732}
+      Script: {instanceID: 6066}
+    - Class: 114
+      Script: {instanceID: 6752}
+    - Class: 114
+      Script: {instanceID: 7728}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -139,6 +150,8 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
       Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
@@ -351,7 +364,7 @@ ScriptsOnlyBuild:
     className: UnityOnDropdownValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: e47eacce1439732e4cdf2d091bb9cd1a
+      Hash: 94a142f6b240b8e2a342e2f6af0775bd
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameManager
