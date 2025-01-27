@@ -1946,8 +1946,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 395208938}
-  - {fileID: 2766610}
   - {fileID: 1413143532}
+  - {fileID: 2766610}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3004,7 +3004,6 @@ MonoBehaviour:
   scoreText: {fileID: 395208939}
   gameOverText: {fileID: 2766611}
   gameOverBackground: {fileID: 1413143533}
-  backgroundColor: {r: 0, g: 0, b: 0, a: 0.8}
 --- !u!4 &1385069013
 Transform:
   m_ObjectHideFlags: 0
@@ -3099,7 +3098,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413143531}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1001 &1445361476
 PrefabInstance:
   m_ObjectHideFlags: 0

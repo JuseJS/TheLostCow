@@ -4,29 +4,54 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("UI References")]
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text gameOverText;
-    [SerializeField] private Image gameOverBackground; // Panel que servirá de fondo
+    [SerializeField] private Image gameOverBackground;
     
-    [Header("Game Over Settings")]
-    [SerializeField] private Color backgroundColor = new Color(0f, 0f, 0f, 0.8f); // Negro semi-transparente
-
     private int score = 0;
     public bool IsGameOver { get; private set; }
 
     private void Start()
     {
         IsGameOver = false;
-        
+        SetupUI();
+    }
+
+    private void SetupUI()
+    {
         // Configurar el panel de fondo
         if (gameOverBackground != null)
         {
-            gameOverBackground.color = backgroundColor;
+            // Asegurar que el background cubra toda la pantalla
+            RectTransform bgRect = gameOverBackground.GetComponent<RectTransform>();
+            bgRect.anchorMin = Vector2.zero;
+            bgRect.anchorMax = Vector2.one;
+            bgRect.sizeDelta = Vector2.zero;
+            bgRect.anchoredPosition = Vector2.zero;
+            
+            // Configurar color negro opaco
+            gameOverBackground.color = Color.black;
             gameOverBackground.gameObject.SetActive(false);
         }
-        
-        gameOverText.gameObject.SetActive(false);
+
+        // Configurar el texto de Game Over
+        if (gameOverText != null)
+        {
+            // Asegurar que el texto esté centrado y por encima del fondo
+            RectTransform textRect = gameOverText.GetComponent<RectTransform>();
+            textRect.anchorMin = new Vector2(0.5f, 0.5f);
+            textRect.anchorMax = new Vector2(0.5f, 0.5f);
+            textRect.pivot = new Vector2(0.5f, 0.5f);
+            textRect.anchoredPosition = Vector2.zero;
+            
+            // Configurar el estilo del texto
+            gameOverText.color = Color.white;
+            gameOverText.fontSize = 70;
+            gameOverText.alignment = TextAlignmentOptions.Center;
+            gameOverText.gameObject.SetActive(false);
+        }
+
+        // Configurar el texto de puntuación
         scoreText.gameObject.SetActive(true);
         UpdateScoreText();
     }
@@ -46,14 +71,12 @@ public class GameManager : MonoBehaviour
         {
             IsGameOver = true;
             
-            // Mostrar el panel de fondo y el texto
-            if (gameOverBackground != null)
-            {
-                gameOverBackground.gameObject.SetActive(true);
-            }
+            // Activar y configurar el panel de fondo
+            gameOverBackground.gameObject.SetActive(true);
             
-            gameOverText.gameObject.SetActive(true);
+            // Configurar y mostrar el texto de Game Over
             gameOverText.text = $"Game Over\nFinal Score: {score}";
+            gameOverText.gameObject.SetActive(true);
             
             // Desbloquear el cursor
             Cursor.lockState = CursorLockMode.None;
