@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -21,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private CowManager cowManager;
     private GameManager gameManager;
+    private Camera mainCamera;
 
     private void Start()
     {
@@ -33,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
         cowManager = FindObjectOfType<CowManager>();
         gameManager = FindObjectOfType<GameManager>();
+        mainCamera = Camera.main;
         itemInHand.SetActive(false);
     }
 
@@ -52,13 +52,28 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput);
+        // Obtener la dirección de la cámara
+        Vector3 cameraForward = mainCamera.transform.forward;
+        Vector3 cameraRight = mainCamera.transform.right;
+        
+        // Proyectar los vectores de la cámara en el plano horizontal
+        cameraForward.y = 0;
+        cameraRight.y = 0;
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+        // Calcular la dirección del movimiento relativa a la cámara
+        Vector3 movement = (cameraForward * verticalInput + cameraRight * horizontalInput);
 
         if (movement.magnitude > 0)
         {
             movement.Normalize();
-            Quaternion toRotation = Quaternion.LookRotation(movement, Vector3.up);
-            transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            
+            // Rotar el personaje hacia la dirección del movimiento
+            Quaternion targetRotation = Quaternion.LookRotation(movement);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            
+            // Aplicar el movimiento
             rb.velocity = movement * moveSpeed;
         }
         else
