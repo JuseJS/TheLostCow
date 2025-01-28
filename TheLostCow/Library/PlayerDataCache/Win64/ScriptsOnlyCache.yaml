@@ -364,7 +364,7 @@ ScriptsOnlyBuild:
     className: UnityOnDropdownValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 94a142f6b240b8e2a342e2f6af0775bd
+      Hash: 49c98e6eb85a3ba4f2ef5a62911bed0c
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameManager
